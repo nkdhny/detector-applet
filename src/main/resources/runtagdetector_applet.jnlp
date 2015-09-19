@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="" href="">
+    <information>
+        <title>Runtag Detector Applet</title>
+        <vendor>Runtag.ru</vendor>
+    </information>
+    <resources>
+        <!-- Application Resources -->
+        <j2se version="1.8+"
+              href="http://java.sun.com/products/autodl/j2se" />
+        <jar href="detector-applet-assembly-0.1-SNAPSHOT.jar" main="true" />
+	<nativelib href="lib/webcamdetector.jar"/>
+
+    </resources>
+    <applet-desc
+            name="Runtag Detector Applet"
+            main-class="nkdhny.runtag.Detector"
+            width="1"
+            height="1">
+    </applet-desc>
+    <update check="always"/>
+    <security>
+      <all-permissions/>
+    </security>
+</jnlp>
