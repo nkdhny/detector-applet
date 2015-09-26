@@ -5,12 +5,25 @@ import java.util.concurrent.Executors
 
 import netscape.javascript.JSObject
 
+import org.json4s._
+import org.json4s.native.JsonMethods._
+import org.json4s.native.Serialization
+import org.json4s.native.Serialization.{read, write}
+
+
 /**
  * Created by nkdhny on 17.09.15.
  */
 class Detector extends Applet {
 
   var detector: WebcamDetector = null
+
+  def messageFormat(tag: Tag) = {
+
+    Map("id" -> tag.getId, "left" -> tag.getX, "top" -> tag.getY)
+  }
+
+  implicit val format = DefaultFormats
 
   override def start(): Unit = {
 
@@ -22,7 +35,7 @@ class Detector extends Applet {
         while(true) {
           val tags = detector.apply()
 
-          tags.foreach(t => window.eval(s"processMessage('${t.getId}')"))
+          tags.foreach(t => window.eval(s"processMessage('${write(messageFormat(t))}')"))
 
         }
       }
